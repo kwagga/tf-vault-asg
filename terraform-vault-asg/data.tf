@@ -66,16 +66,28 @@ data "aws_subnet" "az-sub-a" {
     name   = "availability-zone"
     values = ["${var.region}a"]
   }
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_default_vpc.default.id]
+  }
 }
 data "aws_subnet" "az-sub-b" {
   filter {
     name   = "availability-zone"
     values = ["${var.region}b"]
   }
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_default_vpc.default.id]
+  }
 }
 data "aws_subnet" "az-sub-c" {
   filter {
     name   = "availability-zone"
     values = ["${var.region}c"]
+  }
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_default_vpc.default.id]
   }
 }
