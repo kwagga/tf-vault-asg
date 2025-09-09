@@ -60,6 +60,9 @@ data "aws_iam_policy_document" "ec2_describe" {
   }
 }
 
+data "aws_default_vpc" "default" {
+}
+
 # We need to collect the existing subnets per AZ to add to the LB
 data "aws_subnet" "az-sub-a" {
   filter {
