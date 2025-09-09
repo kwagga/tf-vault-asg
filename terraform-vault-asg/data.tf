@@ -60,7 +60,8 @@ data "aws_iam_policy_document" "ec2_describe" {
   }
 }
 
-data "aws_default_vpc" "default" {
+data "aws_vpc" "default" {
+  default = true
 }
 
 # We need to collect the existing subnets per AZ to add to the LB
@@ -71,7 +72,7 @@ data "aws_subnet" "az-sub-a" {
   }
   filter {
     name   = "vpc-id"
-    values = [data.aws_default_vpc.default.id]
+    values = [data.aws_vpc.default.id]
   }
 }
 data "aws_subnet" "az-sub-b" {
@@ -81,7 +82,7 @@ data "aws_subnet" "az-sub-b" {
   }
   filter {
     name   = "vpc-id"
-    values = [data.aws_default_vpc.default.id]
+    values = [data.aws_vpc.default.id]
   }
 }
 data "aws_subnet" "az-sub-c" {
@@ -91,6 +92,6 @@ data "aws_subnet" "az-sub-c" {
   }
   filter {
     name   = "vpc-id"
-    values = [data.aws_default_vpc.default.id]
+    values = [data.aws_vpc.default.id]
   }
 }
